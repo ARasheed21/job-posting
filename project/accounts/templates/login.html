@@ -1,0 +1,65 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="{% static 'styles/login.css' %}">
+    <title>Multiple user login</title>
+
+    <style>
+        span {
+
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        span.error {
+            background-color: #f2dede;
+            color: #a94442;
+            border: 1px solid #ebccd1;
+        }
+    </style>
+</head>
+
+
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend>
+                <h2>Login</h2>
+            </legend>
+            <div>
+                <div>
+                    <label for="username">Username</label>
+                    {{ form.username }}
+                </div><br>
+                <div>
+                    <label for="password">Password</label>
+                    {{ form.password }}
+                </div><br>
+
+                <label for="login"> </label>
+                <input type="submit" value="Login" id="login-btn">
+
+                <p>Don't have account? <a href="{% url 'register' %}">Register</a></p>
+                <br><br>
+
+
+                {% if msg %}
+                <span class="error">
+                    {{ msg | safe }}
+                </span>
+                {% endif %}
+
+
+            </div>
+        </fieldset>
+    </form>
+
+</body>
+
+</html>

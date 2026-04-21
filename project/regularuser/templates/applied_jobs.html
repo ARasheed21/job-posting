@@ -1,0 +1,46 @@
+{% extends "user_base.html" %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'styles/appliedJobs.css' %}">
+<script src="{% static 'scripts/delete.js' %}"></script>
+
+{% endblock style %}
+
+{% block title %}
+<title>Applied Jobs</title>
+{% endblock title %}
+
+{% block content %}
+<div class="image-container">
+    <div class="overlay"></div>
+    <h1>Applied Jobs</h1>
+</div>
+
+<div id="jobListContainer">
+    {% for application in applications %}
+    <!-- Job Card -->
+    <div class="job-card" id="jobCard{{ application.id }}">
+        <img src="{{ application.jobId.company.logo }}" alt="Job Image">
+        <p class="job-title">{{ application.jobId.title }}</p>
+        <div class="row-div">
+            <p class="company-name">{{ application.jobId.company.name }}</p>
+            <p class="job-location">{{ application.jobId.location }}</p>
+            <p class="job-salary">{{ application.jobId.salary }}</p>
+        </div>
+        <div class="job-status-container">
+            <p class="job-status">{{ application.jobId.status }}</p>
+        </div>
+        <div class="job-experience-container">
+            <p class="job-experience">{{ application.jobId.experience }} Years</p>
+        </div>
+        <button class="delete-button" data-application-id="{{ application.id }}">Delete</button>
+    </div>
+    {% endfor %}
+</div>
+
+<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+<div id="deleteUrlTemplate" data-url-template="{% url 'delete_application' 0 %}" style="display:none;"></div>
+
+{% endblock content %}
+

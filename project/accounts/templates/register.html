@@ -1,0 +1,85 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="{% static 'styles/register.css' %}">
+    <script src="{% static 'scripts/register.js' %}"></script>
+    <title>Multiple user login</title>
+
+</head>
+
+<body>
+    <form method="post">
+        {% csrf_token %}
+
+        {% if form.errors %}
+        <span class="error">
+            {% for field, errors in form.errors.items %}
+            {% for error in errors %}
+            <p>{{ error }}</p>
+            {% endfor %}
+            {% endfor %}
+        </span>
+        {% endif %}
+
+        <fieldset>
+            <legend>
+                <h2>Register</h2>
+            </legend>
+
+            <div>
+                <label for="username">Username</label>
+                {{ form.username }}
+            </div><br>
+
+            <div>
+                <label for="email">Email</label>
+                {{ form.email}}
+            </div><br>
+
+            <div>
+                <label for="password">Password</label>
+                {{ form.password1 }}
+            </div><br>
+
+            <div>
+                <label for="password">Confirm Password</label>
+                {{ form.password2 }}
+            </div>
+
+            <h2>Create Account As</h2>
+            <div>
+                <label>
+                    {{ form.is_admin }}
+                    Company Admin
+                </label>
+
+                <label>
+                    {{ form.is_regular }}
+                    Regular User
+                </label>
+            </div><br>
+
+            <div id="companyInfoFields">
+                <label for="company-name">Company Name</label>
+                {{ form.company_name }}<br><br>
+
+                <label for="company-address">Company Address</label>
+                {{ form.company_address }}<br><br>
+
+                <label for="company-email">Company Email</label>
+                {{ form.company_email }}<br><br>
+
+                <label for="company-logo">Company Logo</label>
+                {{ form.company_logo }}<br><br>
+            </div><br>
+
+            <input type="submit" value="Register" id="signUp-btn"><br>
+            <p>Already have an account? <a href="{% url 'login_view' %}">Login</a></p><br>
+        </fieldset>
+    </form>
+
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="{% static 'nav.css' %}">
+  {% block style %}{% endblock %}
+  {% block title %}{% endblock %}
+  <script>
+    function toRegister() { window.location.href = "{% url 'register' %}"; }
+    function toLogin() { window.location.href = "{% url 'login_view' %}"; }
+  </script>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <p>Job Search</p>
+    </div>
+    <div class="navbar-items">
+      <a href="{%url 'adminhome'%}">Home</a>
+      <a href="{%url 'add_job'%}">Add Job</a>
+      <a href="{%url 'posted_jobs'%}">Posted Jobs</a>
+    </div>
+    <div class="navbar-buttons">
+      <button onclick="toRegister()">Sign Up</button>
+      <button onclick="toLogin()">Sign In</button>
+    </div>
+  </nav>
+
+  {% block content %}
+  {% endblock %}
+
+</body>
+
+</html>

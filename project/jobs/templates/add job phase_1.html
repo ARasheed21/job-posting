@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Add Job</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/addJob.css' %}">
+</head>
+
+<body>
+
+
+    <h1>Add Job</h1>
+    <form id="addJobForm" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" id="add-button">
+            {%if form_type == 'add'%}
+            Add Job
+            {%else%}
+            Update
+            {%endif%}
+        </button>
+    </form>
+</body>
+
+</html>

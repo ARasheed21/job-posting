@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Job List</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/job_details.css' %}">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 id="job-title">{{ job.title }}</h1>
+
+        <h2>Job Summary</h2>
+        <ul class="job-summary-list">
+            <li id="job-experience">Experience: {{ job.experience }} Years</li>
+            <li id="job-status">Job Status: {{ job.status }}</li>
+            <li id="job-location">Location: {{ job.location }} </li>
+            <li id="job-salary"> Salary: {{ job.salary }} </li>
+        </ul>
+
+        <h2>Job Description</h2>
+        <p id="job-descrption"> {{ job.description }}</p>
+
+        <form method="post" action="{% url 'apply_for_job' job.id %}">
+            {% csrf_token %}
+            <label for="CV">CV Link:</label><br>
+            <input type="text" id="CV" name="cv_link"><br><br>
+            <input type="submit" id="apply" value="Apply">
+        </form>
+
+    </div>
+
+</body>
+
+</html>

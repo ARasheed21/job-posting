@@ -1,0 +1,26 @@
+{% extends "admin_base.html" %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'styles/home.css' %}">
+{% endblock %}
+
+{% block title %}
+<title>Admin Home</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="info">
+    <div class="content">
+      <h2>Welcome to our Job Search Website</h2>
+      <p>Ready to share your job opportunity with the world? It's simple! Just fill in the details about your job
+        opening requirements. Once you submit, your job will be visible to potential candidates searching for their next
+        adventure. Let's find the perfect match for your team!</p>
+    </div>
+    <div id="img">
+      <img src="{% static 'images/img.jpeg' %}" width="500" height="400" />
+    </div>
+  </div>
+
+{% endblock %}

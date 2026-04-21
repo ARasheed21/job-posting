@@ -1,0 +1,47 @@
+{% extends "user_base.html" %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'styles/job_list.css' %}">
+{% endblock %}
+
+{% block title %}
+<title>Job List</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="image-container">
+    <div class="overlay"></div>
+    <h1>Posted Jobs</h1>
+</div>
+
+<!-- Container for the job list -->
+<div id="jobListContainer">
+    {% for job in jobs %}
+    <!-- Job Card -->
+
+    <div class="job-card">
+        <img src="{{ job.company.logo }}" alt="Job Image">
+        <p class="job-title">{{ job.title }}</p>
+        <div class="row-div">
+            <p class="company-name">{{ job.company.name }}</p>
+            <p class="job-location">{{ job.location }}</p>
+            <p class="job-salary">{{ job.salary }}</p>
+        </div>
+        <div class="job-status-container">
+            <p class="job-status">{{ job.status }}</p>
+        </div>
+        <div class="job-experience-container">
+            <p class="job-experience">{{ job.experience }} Years</p>
+        </div>
+        {%if job.status == "closed" %}
+        <button class="apply-button" type="button" disabled>Apply</button>
+        {%else%}
+        <button class="apply-button" onclick="window.location = 'details/{{ job.id }}'">Apply</button>
+        {%endif%}
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

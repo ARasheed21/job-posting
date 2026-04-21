@@ -1,0 +1,60 @@
+{% extends "admin_base.html" %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'styles/posted_jobs.css' %}">
+<script>
+    function confirmDelete(jobId) {
+        if (confirm('Are you sure you want to delete this job?')) {
+            document.getElementById('delete-job-form-' + jobId).submit();
+        }
+    }
+</script>
+{% endblock %}
+
+{% block title %}
+<title>posted Jobs</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="image-container">
+    <div class="overlay"></div>
+    <h1>Posted Jobs</h1>
+</div>
+
+<!-- Container for the job list -->
+<div id="jobListContainer">
+    {% for job in user_jobs %}
+    <!-- Job Card -->
+
+    <div class="job-card">
+        <img src="{{ job.company.logo }}" alt="Job Image">
+        <p class="job-title">{{ job.title }}</p>
+        <div class="row-div">
+            <p class="company-name">{{ job.company.name }}</p>
+            <p class="job-location">{{ job.location }}</p>
+            <p class="job-salary">{{ job.salary }}</p>
+        </div>
+        <div class="job-status-container">
+            <p class="job-status">{{ job.status }}</p>
+        </div>
+        <div class="job-experience-container">
+            <p class="job-experience">{{ job.experience }} Years</p>
+        </div>
+
+        <div class="button-container">
+            <form action="{% url 'edit_job' job.id %}" method="get" style="display:inline;">
+                <button type="submit" class="edit-button">Edit</button>
+            </form>
+            <form action="{% url 'delete_job' job.id %}" method="post" style="display:inline;"
+                id="delete-job-form-{{ job.id }}">
+                {% csrf_token %}
+                <button type="button" class="delete-button" onclick="confirmDelete({{ job.id }})">Delete</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

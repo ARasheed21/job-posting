@@ -1,0 +1,129 @@
+/* Styling for the image container */
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-image: url(https://www.hubspot.com/hubfs/job-search-process.jpg);
+    background-size: cover;
+    background-position: center;
+  }
+  
+  /* Overlay styling */
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(16, 26, 91, 0.5);
+  }
+  
+  /* Styling for the heading within the image container */
+  .image-container h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #FFFFFF;
+    text-align: center;
+    z-index: 1;
+    /* Ensure the text appears above the overlay */
+  }
+  
+  /* Styling for the container holding the job list */
+  #jobListContainer {
+    width: 750px;
+    margin: auto;
+  }
+  
+  /* Styling for each job card */
+  .job-card {
+    width: 700px;
+    padding: 20px;
+    margin: 10px;
+    position: relative;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .job-card:hover {
+    box-shadow: 0px 22px 57px 0px rgba(34, 41, 72, 0.05);
+  }
+  
+  /* Styling for the job image */
+  .job-card img {
+    float: left;
+    margin-right: 20px;
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+  }
+  
+  /* Styling for paragraphs within the job card */
+  .job-card p {
+    margin: 0;
+  }
+  
+  /* Styling for the job title */
+  .job-card .job-title {
+    font-size: x-large;
+  }
+  
+  /* Styling for the row division within the job card */
+  .row-div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    /* Reduced margin between elements */
+  }
+  
+  /* Styling for paragraphs within the row division */
+  .row-div p {
+    margin: 0;
+    margin-right: 10px;
+    /* Add consistent right margin */
+    margin-top: 5px;
+    /* Add margin to the top */
+  }
+  
+  .job-card .job-status-container {
+    background-color: #FFC04A;
+    color: white;
+    border-radius: 8px;
+    padding: 5px 10px;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .job-card .job-experience-container {
+    background-color: #2C7BD3;
+    color: white;
+    border-radius: 8px;
+    padding: 5px 10px;
+    display: inline-block;
+    margin-top: 20px;
+  }
+  
+  /* Styling for the company name */
+  .company-name {
+    font-weight: bold;
+  }
+  
+  .job-card .delete-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: white;
+    color: #ff0033;
+    border: 1px solid #ff0033;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  .job-card .delete-button:hover {
+    background-color: #ff0033;
+    color: white;
+    border-color: white;
+  }
